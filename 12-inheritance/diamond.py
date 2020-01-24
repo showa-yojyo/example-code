@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 class A:
     def ping(self):
         print('ping:', self)
@@ -25,3 +27,7 @@ class D(B, C):
         self.pong()
         super().pong()
         C.pong(self)
+
+if __name__ == "__main__":
+    d = D()
+    d.pingpong()
