@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 Demonstrate difference between Arithmetic Progression calculated
 as a series of increments accumulating errors versus one addition
