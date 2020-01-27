@@ -167,6 +167,6 @@ Iterator/generator 以外の注意点を挙げる：
 
   * クラス ``IsoRecord`` も同じ仕組みの iterator だ。
 
-* subfield.py: 後回し
+* subfield.py: Python 2 専用コードらしいので研究の対象外。
 
 以上
