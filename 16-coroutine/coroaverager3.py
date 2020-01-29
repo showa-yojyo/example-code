@@ -64,12 +64,15 @@ def averager():  # <1>
 # the delegating generator
 def grouper(results, key):  # <5>
     while True:  # <6>
+        # dict (str -> Result)
         results[key] = yield from averager()  # <7>
 
 
 # the client code, a.k.a. the caller
 def main(data):  # <8>
     results = {}
+
+    # (str, list)
     for key, values in data.items():
         group = grouper(results, key)  # <9>
         next(group)  # <10>

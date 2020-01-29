@@ -27,7 +27,6 @@ See explanation and longer sample run at the end of this module.
 
 """
 
-import sys
 import random
 import collections
 import queue
