@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 """
 Taxi simulator
@@ -135,6 +136,7 @@ def main(end_time=DEFAULT_END_TIME, num_taxis=DEFAULT_NUMBER_OF_TAXIS,
     if seed is not None:
         random.seed(seed)  # get reproducible results
 
+    # 別に dict でなくてよいだろう
     taxis = {i: taxi_process(i, (i+1)*2, i*DEPARTURE_INTERVAL)
              for i in range(num_taxis)}
     sim = Simulator(taxis)

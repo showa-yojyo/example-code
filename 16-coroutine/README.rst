@@ -72,9 +72,37 @@ taxi_sim*.py
 
 これは実用性が増していて面白い。
 
+* text_sim0.py の末尾にドキュメントあり。
+
+* ``add_argument()`` の ``default`` 値をコード内の定数で指定する手口は真似したい。
+* 乱数が絡むコードは ``random.seed()`` の引数を指定可能であるようにする。再現可能目的。
+* ``text_process()`` が ``yield Event()`` の形で generator を返す。
+
+  * この generator はもしかしたら State パターンかもしれない。
+
+* タクシー一台が ``Event`` を列の形で持つ。
+
+  "leave garage", ("pick up", "drop off")+, "going home"
+
+  という持ち方。
+
+* ``Event`` はたんなる構造体データと捉える。
+* ``Simulator`` はタクシーの collection を受け取って ``run()`` する。
+
+  * ``queue.PriorityQueue`` の実演コードだとこれでわかる。
+    ``.put()``, ``.empty()``, ``get()``, ``qsize()`` の使い方がわかる。
+
+    * ``.qsize()`` は組み込み ``len()`` とは違うのか？
+
+  * ``next()`` がイヤな感じがする。
+  * ループがわかりにくい。キューでループするわけではないとは。
+
+* ``compute_duration()`` で状態遷移をする。
+  ``int(random.expovariate())`` がミソ？
+
 yield_from_expansion*.py
 ======================================================================
 
-TBW
+``yield from`` 構文の説明。
 
 以上
