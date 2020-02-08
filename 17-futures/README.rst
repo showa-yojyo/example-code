@@ -5,3 +5,20 @@ Sample code for Chapter 17 - "Concurrency with futures"
 From the book "Fluent Python" by Luciano Ramalho (O'Reilly, 2015)
 http://shop.oreilly.com/product/0636920032519.do
 
+countries/
+======================================================================
+
+これは py3.7 ディレクトリーのものを研究する。
+
+crypto/
+======================================================================
+
+demo_executor_map.py
+======================================================================
+
+``ThreadPoolExecutor`` の実演。
+
+* ``.map(func, args)`` で平行実行みたいなことになると想像に難くない。
+* ``loiter()`` 内の ``sleep()`` は通常版。
+
+以上
