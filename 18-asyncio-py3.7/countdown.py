@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 # Inspired by
 # https://snarky.ca/how-the-heck-does-async-await-work-in-python-3-5/
