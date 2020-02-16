@@ -6,25 +6,25 @@
 import asyncio
 import time
 
+t0 = time.perf_counter()
+hr = '─' * 50
 
 async def countdown(label, delay):
-    tabs = (ord(label) - ord('A')) * '\t'
-    n = 3
-    while n > 0:
-        await asyncio.sleep(delay)  # <----
+    tabs = 6 * (ord(label) - ord('A')) * ' '
+    for n in range(3, 0, -1):
+        await asyncio.sleep(delay)
         dt = time.perf_counter() - t0
-        print('━' * 50)
-        print(f'{dt:7.4f}s \t{tabs}{label} = {n}')
-        n -= 1
+        print(hr)
+        print(f'{dt:7.4f}s {tabs}{label} = {n}')
 
-loop = asyncio.get_event_loop()
-tasks = [
-    loop.create_task(countdown('A', .7)),
-    loop.create_task(countdown('B', 2)),
-    loop.create_task(countdown('C', .3)),
-    loop.create_task(countdown('D', 1)),
-]
-t0 = time.perf_counter()
-loop.run_until_complete(asyncio.wait(tasks))
-loop.close()
-print('━' * 50)
+async def main():
+    await asyncio.gather(
+        *(countdown(i, j) for i, j in (
+            ('A', .7),
+            ('B', 2),
+            ('C', .3),
+            ('D', 1))))
+    print('━' * 50)
+
+if __name__ == '__main__':
+    asyncio.run(main())
