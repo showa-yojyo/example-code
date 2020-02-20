@@ -24,7 +24,7 @@ explore2.py: Script to explore the OSCON schedule feed
 
 # BEGIN EXPLORE2
 from collections import abc
-
+from keyword import iskeyword
 
 class FrozenJSON:
     """A read-only façade for navigating a JSON-like object
