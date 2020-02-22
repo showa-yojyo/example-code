@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from evalsupport import deco_alpha
 
 print('<[1]> evaltime module start')
