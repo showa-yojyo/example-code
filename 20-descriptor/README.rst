@@ -5,6 +5,31 @@ Sample code for Chapter 20 - "Attribute descriptors"
 From the book "Fluent Python" by Luciano Ramalho (O'Reilly, 2015)
 http://shop.oreilly.com/product/0636920032519.do
 
+Descriptor
+======================================================================
+
+Descriptor とは ``__get__()``, ``__set__()``, ``__delete__()`` のいずれかを
+持つ（クラスの）オブジェクトである。
+
+オブジェクト ``obj`` に対する ``obj.x`` の意味はおおまかに言えば次の順に解釈される。
+多重継承や抽象基底を持つ場合にはこれより少し複雑になる：
+
+* ``obj.__dict__['x']``
+* ``obj.__class__.__dict__['x']``
+* ``obj.__class__`` の super class の ``.__dict__['x']__``
+* ``obj.__class__`` により近い基底のクラスの順に ``.__dict__['x']__``
+
+``__get__()`` と ``__set__()`` の両方を持つオブジェクトは
+**data descriptor** であるという。
+``__get__()`` を持ち ``__set__()`` を持たないオブジェクトは
+**non-data descriptor** であるという。
+
+これを利用して read-only な data descriptor を定義できることに注意する。
+``__get__()`` と ``__set__()`` をオーバーライドして後者で例えば
+``AttributeError`` を送出すればよい。
+
+オブジェクトに対する ``__get__()`` とクラスに対するそれとでも、辞書の参照優先順位が異なる。
+
 bulkfood/
 ======================================================================
 
