@@ -29,7 +29,7 @@ coro_exec_demo.py
   * ``.send()`` で coroutine を「活性化」できる？
   * ``.throw()`` で coroutine に例外を送出できる。
   * ``.close()`` で coroutine を停止できる。
-  * ``insepect.getgeneratorstate()`` で coroutine の Python 的状態を得られる。
+  * ``inspect.getgeneratorstate()`` で coroutine の Python 的状態を得られる。
 
 coro_finally_demo.py
 ======================================================================

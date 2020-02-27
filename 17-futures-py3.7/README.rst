@@ -36,7 +36,8 @@ flags*.py
 
   * 要 ``aiohttp`` モジュール。
   * ``asyncio.run()`` で ``download_many()`` を非同期呼び出しする？
-  * ``download_many()``, ``download_one(), ``get_flag()`` は ``async`` 宣言されている。
+  * ``download_many()``, ``download_one()``, ``get_flag()`` は ``async``
+    宣言されている。
 
     * ``async def`` な関数には ``await`` 文を含む処理がある。
 

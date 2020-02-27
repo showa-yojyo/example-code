@@ -19,7 +19,7 @@ http://shop.oreilly.com/product/0636920032519.do
     * ``str()``, ``bytes()``, ``bytearray()``
     * ``range()`` などのそれらしいもの
 
-  * Iterable の真の定義は ``isinstance(X, collections.abs.Iterable)`` なる
+  * Iterable の真の定義は ``isinstance(X, collections.abc.Iterable)`` なる
     ``X`` のことだ。
 
 * Iterator とは ``__iter__()`` と ``__next__()`` を備えたクラスのオブジェクトだ。
@@ -31,7 +31,7 @@ http://shop.oreilly.com/product/0636920032519.do
      >>> issubclass(Iterator, Iterable)
      True
 
-  * 真の定義は ``isinstance(X, collections.abs.Iterator)`` なる
+  * 真の定義は ``isinstance(X, collections.abc.Iterator)`` なる
     ``X`` のことだ。
   * 任意の iterable ``X`` から iterator を得ることができる。
     それには ``iter(X)`` とする。
