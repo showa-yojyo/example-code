@@ -25,7 +25,7 @@ http://shop.oreilly.com/product/0636920032519.do
 * Iterator とは ``__iter__()`` と ``__next__()`` を備えたクラスのオブジェクトだ。
   したがって iterator is-an iterable が成り立つ。
 
-  .. code:: python
+  .. code:: pycon
 
      >>> from collections.abc import (Iterable, Iterator)
      >>> issubclass(Iterator, Iterable)

@@ -99,6 +99,7 @@ eval 系
 * evaltime_meta.py: TBW
 
   .. code:: text
+
      bash$ ./evaltime_meta.py
      <[100]> evalsupport module start
      <[400]> MetaAleph body
