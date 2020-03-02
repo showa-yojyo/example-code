@@ -11,10 +11,11 @@ from aritprog_v0 import ArithmeticProgression as APv0
 from aritprog_v1 import ArithmeticProgression as APv1
 
 if __name__ == '__main__':
-
+    # Define iterators from iterables
     ap0 = iter(APv0(1, .1))
     ap1 = iter(APv1(1, .1))
     ap_frac = iter(APv1(Fraction(1, 1), Fraction(1, 10)))
+
     epsilon = 10**-10
     iteration = 0
     delta = next(ap0) - next(ap1)

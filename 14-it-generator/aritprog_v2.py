@@ -2,6 +2,8 @@
 Arithmetic progression generator function::
 
     >>> ap = aritprog_gen(1, .5, 3)
+    >>> type(ap)
+    function
     >>> list(ap)
     [1.0, 1.5, 2.0, 2.5]
     >>> ap = aritprog_gen(0, 1/3, 1)

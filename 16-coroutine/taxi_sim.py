@@ -50,6 +50,7 @@ See longer sample run at the end of this module.
 
 """
 
+import asyncio
 import random
 import collections
 import queue
@@ -65,10 +66,27 @@ Event = collections.namedtuple('Event', 'time proc action')
 
 
 # BEGIN TAXI_PROCESS
+@asyncio.coroutine
 def taxi_process(ident, trips, start_time=0):  # <1>
-    """Yield to simulator issuing event at each state change"""
+    """Yield to simulator issuing event at each state change
+
+    A generator-based coroutine
+
+    >>> import inspect
+    >>> inspect.isgeneratorfunction(taxi_process)
+    True
+    >>> import asyncio
+    >>> asyncio.iscoroutinefunction(taxi_process)
+    True
+    >>> a = taxi_process(ident=13, trips=2, start_time=0)
+    >>> inspect.isgenerator(a)
+    True
+    >>> asyncio.iscoroutine(a)
+    True
+    """
+
     time = yield Event(start_time, ident, 'leave garage')  # <2>
-    for i in range(trips):  # <3>
+    for _ in range(trips):  # <3>
         time = yield Event(time, ident, 'pick up passenger')  # <4>
         time = yield Event(time, ident, 'drop off passenger')  # <5>
 

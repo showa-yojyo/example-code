@@ -27,6 +27,7 @@ Arithmetic progression class
 
 # BEGIN ARITPROG_CLASS
 class ArithmeticProgression:
+    """An iterable class"""
 
     def __init__(self, begin, step, end=None):  # <1>
         self.begin = begin

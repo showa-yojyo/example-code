@@ -10,12 +10,15 @@ Fibonacci generator implemented "by hand" without generator objects
 
 # BEGIN FIBO_BY_HAND
 class Fibonacci:
+    """An iterable class"""
 
     def __iter__(self):
+        """Returns a generator"""
         return FibonacciGenerator()
 
 
 class FibonacciGenerator:
+    """An iterator class"""
 
     def __init__(self):
         self.a = 0
@@ -35,14 +38,16 @@ class FibonacciGenerator:
 
 
 def fibonacci():
+    """A generator"""
     a, b = 0, 1
     while True:
+        # generator iterator
         yield a
         a, b = b, a + b
 
 
 if __name__ == '__main__':
-
+    # (int, generator-iterator) in (iterator, generator)
     for x, y in zip(Fibonacci(), fibonacci()):
         assert x == y, '%s != %s' % (x, y)
         print(x)

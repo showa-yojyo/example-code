@@ -12,6 +12,7 @@ RE_WORD = re.compile(r'\w+')
 
 
 class Sentence:
+    """An iterable class"""
 
     def __init__(self, text):
         self.text = text
@@ -25,6 +26,7 @@ class Sentence:
 
 
 class SentenceIter():
+    """An iterator class"""
 
     def __init__(self, word_iter):
         self.word_iter = word_iter  # <3>

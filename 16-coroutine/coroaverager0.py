@@ -12,11 +12,28 @@ A coroutine to compute a running average
     15.0
 
 # END CORO_AVERAGER_TEST
-
 """
 
+import asyncio
+
 # BEGIN CORO_AVERAGER
+@asyncio.coroutine
 def averager():
+    """ A generator-based coroutine
+
+    >>> import inspect
+    >>> inspect.isgeneratorfunction(averager)
+    True
+    >>> import asyncio
+    >>> asyncio.iscoroutinefunction(averager)
+    True
+    >>> a = averager()
+    >>> inspect.isgenerator(a)
+    True
+    >>> asyncio.iscoroutine(a)
+    True
+    """
+
     total = 0.0
     count = 0
     average = None

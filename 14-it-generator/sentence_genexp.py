@@ -10,6 +10,7 @@ RE_WORD = re.compile(r'\w+')
 
 
 class Sentence:
+    """An iterable class"""
 
     def __init__(self, text):
         self.text = text
@@ -32,6 +33,7 @@ def main():
         print('Usage: %s <file-name> <word-number>' % sys.argv[0])
         sys.exit(1)
     with open(filename, 'rt', encoding='utf-8') as text_file:
+        # iterable
         s = Sentence(text_file.read())
     for n, word in enumerate(s, 1):
         if n == word_number:

@@ -9,6 +9,7 @@ RE_WORD = re.compile(r'\w+')
 
 
 class Sentence:
+    """An iterable class"""
 
     def __init__(self, text):
         self.text = text  # <1>

@@ -41,7 +41,8 @@ http://shop.oreilly.com/product/0636920032519.do
 
 * Generator とは Iterator の一種であり Iterator オブジェクトを「返す」何か。
 
-  * ``type(X)`` が ``generator`` を返すような ``X`` は generator だ。
+  * ``type(X)`` が ``generator`` を返すような ``X`` は generator というか
+    generator iterator というものだ。
   * ``(g(i) for i in S)`` の形をとるものも generator だ。
   * ``yield`` を含む callable の形をしているものが generator だ。
 

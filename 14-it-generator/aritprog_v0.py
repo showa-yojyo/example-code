@@ -10,6 +10,7 @@ Arithmetic progression class
 
 
 class ArithmeticProgression:
+    """An iterable class"""
 
     def __init__(self, begin, step, end=None):
         self.begin = begin

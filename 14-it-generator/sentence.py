@@ -9,6 +9,7 @@ RE_WORD = re.compile(r'\w+')
 
 
 class Sentence:
+    """A weak Sequence class"""
 
     def __init__(self, text):
         self.text = text

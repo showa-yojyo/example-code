@@ -13,9 +13,11 @@ RE_WORD = re.compile(r'\w+')
 
 
 class Sentence:
+    """An iterable class"""
 
     def __init__(self, text):
         self.text = text
+        # list of str objects
         self.words = RE_WORD.findall(text)
 
     def __repr__(self):
@@ -26,6 +28,7 @@ class Sentence:
 
 
 class SentenceIterator:
+    """An iterator class"""
 
     def __init__(self, words):
         self.words = words  # <3>
