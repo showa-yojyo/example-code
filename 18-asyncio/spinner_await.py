@@ -12,6 +12,15 @@ import sys
 
 
 async def spin(msg):  # <1>
+    """A native coroutine
+    >>> import inspect
+    >>> inspect.isgeneratorfunction(spin)
+    False
+    >>> inspect.iscoroutinefunction(spin)
+    True
+    >>> asyncio.iscoroutinefunction(spin)
+    True
+    """
     write, flush = sys.stdout.write, sys.stdout.flush
     for char in itertools.cycle('|/-\\'):
         status = char + ' ' + msg
@@ -26,13 +35,31 @@ async def spin(msg):  # <1>
 
 
 async def slow_function():  # <4>
+    """A native coroutine
+    >>> import inspect
+    >>> inspect.isgeneratorfunction(slow_function)
+    False
+    >>> inspect.iscoroutinefunction(slow_function)
+    True
+    >>> asyncio.iscoroutinefunction(slow_function)
+    True
+    """
     # pretend waiting a long time for I/O
     await asyncio.sleep(3)  # <5>
     return 42
 
 
 async def supervisor():  # <6>
-    spinner = asyncio.ensure_future(spin('thinking!'))  # <7>
+    """A native coroutine
+    >>> import inspect
+    >>> inspect.isgeneratorfunction(supervisor)
+    False
+    >>> inspect.iscoroutinefunction(supervisor)
+    True
+    >>> asyncio.iscoroutinefunction(supervisor)
+    True
+    """
+    spinner = asyncio.create_task(spin('thinking!'))  # <7>
     print('spinner object:', spinner)  # <8>
     result = await slow_function()  # <9>
     spinner.cancel()  # <10>
@@ -40,9 +67,7 @@ async def supervisor():  # <6>
 
 
 def main():
-    loop = asyncio.get_event_loop()  # <11>
-    result = loop.run_until_complete(supervisor())  # <12>
-    loop.close()
+    result = asyncio.run(supervisor())  # <12>
     print('Answer:', result)
 
 

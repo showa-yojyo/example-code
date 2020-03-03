@@ -14,6 +14,15 @@ import sys
 
 @asyncio.coroutine  # <1>
 def spin(msg):  # <2>
+    """A generator-based coroutine
+    >>> import inspect
+    >>> inspect.isgeneratorfunction(spin)
+    True
+    >>> inspect.iscoroutinefunction(spin)
+    False
+    >>> asyncio.iscoroutinefunction(spin)
+    True
+    """
     write, flush = sys.stdout.write, sys.stdout.flush
     for char in itertools.cycle('|/-\\'):
         status = char + ' ' + msg
@@ -29,6 +38,15 @@ def spin(msg):  # <2>
 
 @asyncio.coroutine
 def slow_function():  # <5>
+    """A generator-based coroutine
+    >>> import inspect
+    >>> inspect.isgeneratorfunction(slow_function)
+    True
+    >>> inspect.iscoroutinefunction(slow_function)
+    False
+    >>> asyncio.iscoroutinefunction(slow_function)
+    True
+    """
     # pretend waiting a long time for I/O
     yield from asyncio.sleep(3)  # <6>
     return 42
@@ -36,7 +54,16 @@ def slow_function():  # <5>
 
 @asyncio.coroutine
 def supervisor():  # <7>
-    spinner = asyncio.async(spin('thinking!'))  # <8>
+    """A generator-based coroutine
+    >>> import inspect
+    >>> inspect.isgeneratorfunction(supervisor)
+    True
+    >>> inspect.iscoroutinefunction(supervisor)
+    False
+    >>> asyncio.iscoroutinefunction(supervisor)
+    True
+    """
+    spinner = asyncio.create_task(spin('thinking!'))  # <8>
     print('spinner object:', spinner)  # <9>
     result = yield from slow_function()  # <10>
     spinner.cancel()  # <11>
@@ -44,9 +71,7 @@ def supervisor():  # <7>
 
 
 def main():
-    loop = asyncio.get_event_loop()  # <12>
-    result = loop.run_until_complete(supervisor())  # <13>
-    loop.close()
+    result = asyncio.run(supervisor())  # <13>
     print('Answer:', result)
 
 

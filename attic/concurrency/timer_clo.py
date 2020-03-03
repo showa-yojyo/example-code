@@ -14,8 +14,8 @@ def make_show_remaining(seconds):
             loop.stop()
 
     return show_remaining
-    
-    
+
+
 def main(seconds=5):
     seconds = int(seconds)
     loop = asyncio.get_event_loop()
