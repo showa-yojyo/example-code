@@ -165,7 +165,14 @@ def print_args(name, *args):
 ### essential classes for this example ###
 
 class Overriding:  # <1>
-    """a.k.a. data descriptor or enforced descriptor"""
+    """a.k.a. data descriptor or enforced descriptor
+
+    >>> import inspect
+    >>> inspect.isdatadescriptor(Overriding())
+    True
+    >>> inspect.isgetsetdescriptor(Overriding())
+    False
+    """
 
     def __get__(self, instance, owner):
         print_args('get', self, instance, owner)  # <2>
@@ -175,20 +182,51 @@ class Overriding:  # <1>
 
 
 class OverridingNoGet:  # <3>
-    """an overriding descriptor without ``__get__``"""
+    """an overriding descriptor without ``__get__``
+
+    >>> import inspect
+    >>> inspect.isdatadescriptor(OverridingNoGet())
+    False
+    >>> inspect.isgetsetdescriptor(OverridingNoGet())
+    False
+    """
 
     def __set__(self, instance, value):
         print_args('set', self, instance, value)
 
 
 class NonOverriding:  # <4>
-    """a.k.a. non-data or shadowable descriptor"""
+    """a.k.a. non-data or shadowable descriptor
+
+    >>> import inspect
+    >>> inspect.isdatadescriptor(NonOverriding())
+    False
+    >>> inspect.isgetsetdescriptor(NonOverriding())
+    False
+    """
 
     def __get__(self, instance, owner):
         print_args('get', self, instance, owner)
 
 
 class Managed:  # <5>
+    """
+    >>> import inspect
+    >>> m = Managed()
+    >>> inspect.isdatadescriptor(m.over)
+    False
+    >>> inspect.isdatadescriptor(m.over_no_get)
+    False
+    >>> inspect.isdatadescriptor(m.non_over)
+    False
+    >>> inspect.isdatadescriptor(Managed.over)
+    False
+    >>> inspect.isdatadescriptor(Managed.over_no_get)
+    False
+    >>> inspect.isdatadescriptor(Managed.non_over)
+    False
+    """
+
     over = Overriding()
     over_no_get = OverridingNoGet()
     non_over = NonOverriding()
@@ -197,3 +235,67 @@ class Managed:  # <5>
         print('-> Managed.spam({})'.format(display(self)))
 
 # END DESCR_KINDS
+
+class RevealAccess(object):
+    """A data descriptor that sets and returns values
+       normally and prints a message logging their access.
+
+    >>> class MyClass(object):
+    ...     x = RevealAccess(10, 'var "x"')
+    ...     y = 5
+    ...     def __init__(self):
+    ...         self.z = RevealAccess(100, 'var "z"')
+    ...
+    >>> m = MyClass()
+    >>> m.x
+    Retrieving var "x"
+    10
+    >>> MyClass.x
+    Retrieving var "x"
+    10
+    >>> m.x = 20
+    Updating var "x"
+    >>> m.x
+    Retrieving var "x"
+    20
+    >>> MyClass.x
+    Retrieving var "x"
+    20
+    >>> m.y
+    5
+    >>> m.z = 200
+    >>> m.z
+    200
+    >>> n = MyClass()
+    >>> n.x
+    Retrieving var "x"
+    20
+    >>> type(m).__name__
+    'MyClass'
+    >>> isinstance(type(m).__dict__['x'], RevealAccess)
+    True
+    >>> type(m).__dict__['x'].__get__(m, type(m))
+    Retrieving var "x"
+    20
+    >>> type(m).__dict__['x'].__get__(None, type(m))
+    Retrieving var "x"
+    20
+    >>> m.__dict__['z']
+    200
+    """
+
+    def __init__(self, initval=None, name='var'):
+        self.val = initval
+        self.name = name
+
+    def __get__(self, obj, objtype):
+        print('Retrieving', self.name)
+        return self.val
+
+    def __set__(self, obj, val):
+        print('Updating', self.name)
+        self.val = val
+
+"""
+
+"""

@@ -19,7 +19,7 @@ Descriptor とは ``__get__()``, ``__set__()``, ``__delete__()`` のいずれか
 * ``obj.__class__`` の super class の ``.__dict__['x']__``
 * ``obj.__class__`` により近い基底のクラスの順に ``.__dict__['x']__``
 
-``__get__()`` と ``__set__()`` の両方を持つオブジェクトは
+``__set__()`` または ``__delete__()`` を持つオブジェクトは
 **data descriptor** であるという。
 ``__get__()`` を持ち ``__set__()`` を持たないオブジェクトは
 **non-data descriptor** であるという。
